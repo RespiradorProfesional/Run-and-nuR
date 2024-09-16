@@ -10,11 +10,13 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="Host" type="Button" parent="Hud"]
+layout_mode = 0
 offset_right = 472.0
 offset_bottom = 94.0
 text = "HOst"
 
 [node name="Join" type="Button" parent="Hud"]
+layout_mode = 0
 offset_left = -12.0
 offset_top = 126.0
 offset_right = 564.0
@@ -25,5 +27,12 @@ text = "Join"
 _spawnable_scenes = PackedStringArray("res://scene/test/test_player.tscn")
 spawn_path = NodePath("..")
 
+[node name="Button" type="Button" parent="."]
+offset_left = 404.0
+offset_top = 383.0
+offset_right = 1165.0
+offset_bottom = 583.0
+
 [connection signal="pressed" from="Hud/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="Hud/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
