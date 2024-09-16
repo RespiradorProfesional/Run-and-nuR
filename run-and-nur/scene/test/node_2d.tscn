@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3xa7pu5o2wcq"]
+
+[ext_resource type="Script" path="res://script/test/test.gd" id="1_5xjmk"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_5xjmk")
+
+[node name="Hud" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Host" type="Button" parent="Hud"]
+offset_right = 472.0
+offset_bottom = 94.0
+text = "HOst"
+
+[node name="Join" type="Button" parent="Hud"]
+offset_left = -12.0
+offset_top = 126.0
+offset_right = 564.0
+offset_bottom = 302.0
+text = "Join"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scene/test/test_player.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="Hud/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Hud/Join" to="." method="_on_join_pressed"]
