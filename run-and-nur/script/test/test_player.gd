@@ -19,3 +19,14 @@ func _physics_process(delta: float) -> void:
 		velocity= direction* 0
 
 	move_and_slide()
+
+
+func _on_button_pressed() -> void:
+	rpc("prueba_boton",name)
+
+#solo se ejecuta en el cual tiene autoridad
+
+@rpc("authority","call_local")
+func prueba_boton(string):
+	$Button.text=string
+	print("soy autoridad de " + name)

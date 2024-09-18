@@ -16,9 +16,9 @@ func _on_host_pressed() -> void:
 
 func _on_join_pressed() -> void:
 	var peer = ENetMultiplayerPeer.new()
-	peer.create_client("localhost",3500)
+	peer.create_client("localhost", 3500)  # Cambia "IP_DEL_HOST" por la dirección IP del host
 	multiplayer.multiplayer_peer = peer
-	hud.visible=false
+	hud.visible = false
 
 func _on_peer_connected(id: int =1) -> void:
 	var player_scene= load("res://scene/test/test_player.tscn")
