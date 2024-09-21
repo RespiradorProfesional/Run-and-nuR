@@ -51,8 +51,7 @@ func _on_lobby_match_list(these_lobbies: Array) -> void:
 
 func join_lobby(this_lobby_id: int) -> void:
 	# Make the lobby join request to Steam
-	Steam.joinLobby(this_lobby_id)
-	peer.connect_lobby(this_lobby_id)
+	peer.connect_lobby(lobby_id)
 	multiplayer.multiplayer_peer = peer
 
 func _on_join_friend_pressed(lobby_id, steam_id):
@@ -71,7 +70,7 @@ func _on_lobby_created(connect: int, this_lobby_id: int) -> void:
 		# Puedes agregar más datos del lobby si lo necesitas
 		Steam.setLobbyData(lobby_id, "name", "Nombre de tu lobby")
 
-		peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
+		peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC,2)
 		# Asignar el SteamMultiplayerPeer al sistema multijugador una vez creado el lobby
 		multiplayer.multiplayer_peer = peer
 
