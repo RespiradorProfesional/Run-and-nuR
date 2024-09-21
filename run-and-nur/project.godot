@@ -11,10 +11,18 @@ config_version=5
 [application]
 
 config/name="Run and nuR"
-run/main_scene="res://scene/test/node_2d.tscn"
+run/main_scene="res://scene/ui/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
 window/stretch/mode="canvas_items"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "orange",
+"res://scene/": "green",
+"res://script/": "red"
+}

@@ -4,21 +4,25 @@ extends Node2D
 @onready var hud=$Hud
 var player_id=1
 
-# Called when the node enters the scene tree for the first time.
-func _on_host_pressed() -> void:
-	var peer = ENetMultiplayerPeer.new()
-	peer.create_server(3500,2)
-	multiplayer.multiplayer_peer = peer
-	multiplayer.peer_connected.connect(_on_peer_connected)
-	_on_peer_connected()
-	hud.visible=false
-	print(player_id)
+var peer = SteamMultiplayerPeer.new()
 
-func _on_join_pressed() -> void:
-	var peer = ENetMultiplayerPeer.new()
-	peer.create_client("localhost", 3500)  # Cambia "IP_DEL_HOST" por la dirección IP del host
+func _ready():
+	var api = Steam.steamInitEx(true,480, true)
+	print(api)
+	Steam.join_requested.connect(_on_join_pressed)
+
+func _on_host_pressed() -> void:
+	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_FRIENDS_ONLY,2)
+	multiplayer.multiplayer_peer=peer
+	multiplayer.peer_connected.connect(_on_peer_connected)
+	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
+	hud.visible=false
+	_on_peer_connected()
+
+func _on_join_pressed(lobby_id, steam_id) -> void:
+	peer.connect_lobby(lobby_id)
 	multiplayer.multiplayer_peer = peer
-	hud.visible = false
+	hud.visible=false
 
 func _on_peer_connected(id: int =1) -> void:
 	var player_scene= load("res://scene/test/test_player.tscn")
@@ -28,6 +32,8 @@ func _on_peer_connected(id: int =1) -> void:
 	print(player_id)
 	add_child(player_instantiate,true)
 
+func _on_peer_disconnected(id: int =1) -> void:
+	pass
 
 
 #asi se podrian diferenciar

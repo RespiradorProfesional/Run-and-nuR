@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://d13lrkjajay52"]
+
+[ext_resource type="Script" path="res://script/ui/vbox_lobby.gd" id="1_cc5t7"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_cc5t7")
+
+[node name="Label_name" type="Label" parent="."]
+layout_mode = 2
+
+[node name="Exit_button" type="Button" parent="."]
+layout_mode = 2
