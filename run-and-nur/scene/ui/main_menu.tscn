@@ -94,10 +94,6 @@ layout_mode = 2
 layout_mode = 2
 text = "MAIN_START"
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scene/ui/vbox_lobby.tscn")
-spawn_path = NodePath("../lobby/lobby_players")
-
 [connection signal="pressed" from="main_menu/host_lobby" to="." method="_on_host_lobby_pressed"]
 [connection signal="pressed" from="main_menu/search_lobby" to="." method="_on_search_lobby_pressed"]
 [connection signal="pressed" from="lobby/start" to="." method="_on_start_pressed"]
