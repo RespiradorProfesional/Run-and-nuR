@@ -15,13 +15,24 @@ func _ready():
 	print(api)
 	Steam.join_requested.connect(_on_join_pressed)
 	Steam.lobby_match_list.connect(_on_lobby_match_list)
+	Steam.lobby_created.connect(_on_lobby_created)
 
 	scroll_container.visible = false
 	lobby_vbox.visible = false
 	background_lobby.visible = false
-	background_lobby.visible = false
+
+func _on_lobby_created(connect: int, this_lobby_id: int) -> void:
+	if connect == 1:
+		# Guardar la ID del lobby
+		lobby_id = this_lobby_id
+		print("Lobby creado: %s" % lobby_id)
+
+		# Resto de la configuración del lobby...
 
 func _on_host_lobby_pressed() -> void:
+	Steam.createLobby(Steam.LOBBY_TYPE_PUBLIC,2)
+	
+	
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_FRIENDS_ONLY, 2)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_on_peer_connected)
