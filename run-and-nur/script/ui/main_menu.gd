@@ -19,6 +19,7 @@ func _ready():
 	scroll_container.visible = false
 	lobby_vbox.visible = false
 	background_lobby.visible = false
+	background_lobby.visible = false
 
 func _on_host_lobby_pressed() -> void:
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_FRIENDS_ONLY, 2)
