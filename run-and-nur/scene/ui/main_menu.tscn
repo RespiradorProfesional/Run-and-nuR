@@ -20,10 +20,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -324.0
-offset_right = 93.0
-offset_bottom = 322.0
+offset_left = -126.5
+offset_top = -323.0
+offset_right = 126.5
+offset_bottom = 323.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -45,11 +45,13 @@ layout_mode = 2
 text = "MAIN_EXIT"
 
 [node name="background_lobby" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -176.0
+offset_right = 165.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_87820")
@@ -94,6 +96,36 @@ layout_mode = 2
 [node name="start" type="Button" parent="lobby"]
 layout_mode = 2
 text = "MAIN_START"
+
+[node name="screen_waiting" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="screen_waiting"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.552941)
+
+[node name="Label" type="Label" parent="screen_waiting"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "MAIN_WAITING_START"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="steam" parent="." instance=ExtResource("3_bouyy")]
 

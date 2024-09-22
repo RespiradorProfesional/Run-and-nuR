@@ -5,6 +5,7 @@ extends Control
 @onready var vbox_container = $ScrollContainer/search_lobby
 @onready var lobby_vbox = $lobby
 @onready var lobby_players = $lobby/lobby_players
+@onready var screen_waiting=$screen_waiting
 
 var player_id
 var peer = SteamMultiplayerPeer.new()
@@ -20,13 +21,30 @@ func _ready():
 	scroll_container.visible = false
 	lobby_vbox.visible = false
 	background_lobby.visible = false
+	screen_waiting.visible=false
+
+#BUTTONS
 
 func _on_host_lobby_pressed() -> void:
+	background_lobby.visible=true
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC, 2)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	_on_peer_connected()
+
+func _on_search_lobby_pressed() -> void:
+	background_lobby.visible=true
+	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
+	Steam.requestLobbyList()
+	scroll_container.visible=true
+
+func _on_start_pressed() -> void:
+	rpc("change_scene")
+
+
+#CALLBACKS
+
 
 func _on_lobby_created(connect,id):
 	if connect:
@@ -35,14 +53,7 @@ func _on_lobby_created(connect,id):
 		Steam.setLobbyJoinable(id,true)
 
 func _on_join_friend(lobby_id, steam_id) -> void:
-	print(lobby_id)
-	peer.connect_lobby(lobby_id)
-	multiplayer.multiplayer_peer = peer
-
-func _on_search_lobby_pressed() -> void:
-	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
-	Steam.requestLobbyList()
-	scroll_container.visible=true
+	join_lobby(lobby_id)
 
 func _on_lobby_match_list(lobbies):
 	for lobby in lobbies:
@@ -58,12 +69,11 @@ func _on_lobby_match_list(lobbies):
 
 
 func join_lobby(id):
+	screen_waiting.visible=true
 	peer.connect_lobby(id)
+	print(peer)
 	multiplayer.multiplayer_peer = peer
 	lobby_id=id 
-
-func _on_start_pressed() -> void:
-	rpc("change_scene")
 
 func _on_peer_connected(id: int = 1) -> void:
 	var player_scene = load("res://scene/ui/vbox_lobby.tscn")
@@ -77,6 +87,10 @@ func _on_peer_connected(id: int = 1) -> void:
 func _on_peer_disconnected(id: int = 1) -> void:
 	pass
 
+
+#RPCS
+
 @rpc("any_peer", "call_local")
 func change_scene() -> void:
+	GlobalData.user_id=player_id
 	get_tree().change_scene_to_file("res://scene/ui/character_selector.tscn")
