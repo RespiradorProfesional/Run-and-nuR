@@ -6,3 +6,6 @@
 
 [node name="player_spawn" parent="." index="1"]
 position = Vector2(382, 209)
+
+[node name="MultiplayerSpawner" parent="." index="3"]
+spawn_path = NodePath("..")
