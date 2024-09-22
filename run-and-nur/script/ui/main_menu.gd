@@ -22,7 +22,7 @@ func _ready():
 	background_lobby.visible = false
 
 func _on_host_lobby_pressed() -> void:
-	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_FRIENDS_ONLY, 2)
+	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC, 2)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
@@ -31,8 +31,8 @@ func _on_host_lobby_pressed() -> void:
 func _on_lobby_created(connect,id):
 	if connect:
 		lobby_id=id
-		Steam.setLobbyData(lobby_id,"name",str(Steam.getPersonaName()+"'s Lobby"))
-		Steam.setLobbyJoinable(lobby_id,true)
+		Steam.setLobbyData(id,"name",str(Steam.getPersonaName()+"'s Lobby"))
+		Steam.setLobbyJoinable(id,true)
 
 func _on_join_friend(lobby_id, steam_id) -> void:
 	print(lobby_id)
