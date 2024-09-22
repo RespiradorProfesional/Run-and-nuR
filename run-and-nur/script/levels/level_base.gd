@@ -11,6 +11,13 @@ func _ready() -> void:
 		player_instantiate_1.position=player_spawn.position
 		add_child(player_instantiate_1,true)
 	else:
+		rpc("locura")
+
+
+
+@rpc("any_peer","call_local")
+func locura():
+	if GlobalData.user_id!=1:
 		var player_scene_2= load(GlobalData.chacter_player2_route)
 		var player_instantiate_2= player_scene_2.instantiate()
 		player_instantiate_2.name=str(GlobalData.user_id)
