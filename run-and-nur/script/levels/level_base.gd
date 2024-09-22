@@ -1,26 +1,24 @@
 extends Node2D
 
-@onready var multiplayer_spawner=$MultiplayerSpawner
 @onready var player_spawn=$player_spawn
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	rpc("spawn_players",GlobalData.user_id)
+	rpc("spawn_player", multiplayer.get_unique_id(), GlobalData.chacter_player1_route if GlobalData.user_id == 1 else GlobalData.chacter_player2_route)
 
-@rpc("any_peer","call_local")
-func spawn_players(user_id):
-	if user_id==1:
-		var player_scene_1= load(GlobalData.chacter_player1_route)
-		var player_instantiate_1= player_scene_1.instantiate()
-		player_instantiate_1.name=str(user_id)
-		player_instantiate_1.position=player_spawn.position
-		add_child(player_instantiate_1,true)
-	else:
-		var player_scene_2= load(GlobalData.chacter_player2_route)
-		var player_instantiate_2= player_scene_2.instantiate()
-		player_instantiate_2.name=str(user_id)
-		player_instantiate_2.position=player_spawn.position
-		add_child(player_instantiate_2,true)
+# Función remota para instanciar a los jugadores en todos los peers
+@rpc("any_peer", "call_local")
+func spawn_player(player_id: int, character_route: String) -> void:
+	var player_scene = load(character_route)
+	var player_instantiate = player_scene.instantiate()
+	player_instantiate.name = str(player_id)
+	player_instantiate.position = player_spawn.position
+	
+	# Agrega el jugador instanciado a la escena
+	add_child(player_instantiate, true)
+
+	print("Jugador instanciado con ID: ", player_id)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
