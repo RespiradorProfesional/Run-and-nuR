@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1mqy8up3jwiu"]
+
+[ext_resource type="Script" path="res://script/components/steam.gd" id="1_0iomv"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_0iomv")

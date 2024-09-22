@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dimy7ip613xtw"]
+[gd_scene load_steps=4 format=3 uid="uid://dimy7ip613xtw"]
 
 [ext_resource type="Script" path="res://script/ui/main_menu.gd" id="1_yt0gr"]
 [ext_resource type="Texture2D" uid="uid://xhskn3qxedjp" path="res://icon.svg" id="2_87820"]
+[ext_resource type="PackedScene" uid="uid://d1mqy8up3jwiu" path="res://scene/components/steam.tscn" id="3_bouyy"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -93,6 +94,8 @@ layout_mode = 2
 [node name="start" type="Button" parent="lobby"]
 layout_mode = 2
 text = "MAIN_START"
+
+[node name="steam" parent="." instance=ExtResource("3_bouyy")]
 
 [connection signal="pressed" from="main_menu/host_lobby" to="." method="_on_host_lobby_pressed"]
 [connection signal="pressed" from="main_menu/search_lobby" to="." method="_on_search_lobby_pressed"]

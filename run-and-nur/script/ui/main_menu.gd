@@ -13,7 +13,9 @@ var lobby_id
 func _ready():
 	var api = Steam.steamInitEx(true, 480, true)
 	print(api)
-	Steam.join_requested.connect(_on_join_pressed)
+	Steam.join_requested.connect(_on_join_friend)
+	Steam.lobby_match_list.connect(_on_lobby_match_list)
+	peer.lobby_created.connect(_on_lobby_created)
 
 	scroll_container.visible = false
 	lobby_vbox.visible = false
@@ -26,17 +28,38 @@ func _on_host_lobby_pressed() -> void:
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	_on_peer_connected()
 
-func _on_join_pressed(lobby_id, steam_id) -> void:
+func _on_lobby_created(connect,id):
+	if connect:
+		lobby_id=id
+		Steam.setLobbyData(lobby_id,"name",str(Steam.getPersonaName()+"'s Lobby"))
+		Steam.setLobbyJoinable(lobby_id,true)
+
+func _on_join_friend(lobby_id, steam_id) -> void:
 	print(lobby_id)
 	peer.connect_lobby(lobby_id)
 	multiplayer.multiplayer_peer = peer
 
 func _on_search_lobby_pressed() -> void:
-	pass
+	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
+	Steam.requestLobbyList()
+	scroll_container.visible=true
 
-func join_lobby(lobby_id):
-	peer.connect_lobby(lobby_id)
+func _on_lobby_match_list(lobbies):
+	for lobby in lobbies:
+		var lobby_name= Steam.getLobbyData(lobby,"name")
+		var mem_count= Steam.getNumLobbyMembers(lobby)
+		
+		var lobby_button: Button = Button.new()
+		lobby_button.set_text(lobby_name + " "+  str(mem_count))
+		lobby_button.set_size(Vector2(800, 50))
+		lobby_button.connect("pressed", Callable(self, "join_lobby").bind(lobby))
+		vbox_container.add_child(lobby_button)
+
+
+func join_lobby(id):
+	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
+	lobby_id=id 
 
 func _on_start_pressed() -> void:
 	rpc("change_scene")
