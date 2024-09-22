@@ -48,8 +48,8 @@ func _on_lobby_match_list(lobbies):
 	for lobby in lobbies:
 		var lobby_name= Steam.getLobbyData(lobby,"name")
 		var mem_count= Steam.getNumLobbyMembers(lobby)
-		if lobby==lobby_id:
-			print("AAAAAAAAAAAAAAAAAAAAAAAAAA")
+		if lobby_name=="LittleChicken's Lobby":
+			print("AAAAAAAAAAAAAAAAAAAAAAAA")
 		var lobby_button: Button = Button.new()
 		lobby_button.set_text(lobby_name)
 		lobby_button.set_size(Vector2(800, 50))
