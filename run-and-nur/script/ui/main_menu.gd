@@ -48,9 +48,10 @@ func _on_lobby_match_list(lobbies):
 	for lobby in lobbies:
 		var lobby_name= Steam.getLobbyData(lobby,"name")
 		var mem_count= Steam.getNumLobbyMembers(lobby)
-		
+		if lobby==lobby_id:
+			print("AAAAAAAAAAAAAAAAAAAAAAAAAA")
 		var lobby_button: Button = Button.new()
-		lobby_button.set_text(lobby_name + " "+  str(mem_count))
+		lobby_button.set_text(lobby_name)
 		lobby_button.set_size(Vector2(800, 50))
 		lobby_button.connect("pressed", Callable(self, "join_lobby").bind(lobby))
 		vbox_container.add_child(lobby_button)
