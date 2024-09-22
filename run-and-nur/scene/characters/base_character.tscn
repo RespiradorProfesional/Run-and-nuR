@@ -25,3 +25,5 @@ texture = ExtResource("2_jpopu")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_uhy1u")
+
+[node name="Camera2D" type="Camera2D" parent="."]
