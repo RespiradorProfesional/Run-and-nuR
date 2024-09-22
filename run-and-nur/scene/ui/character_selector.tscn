@@ -62,4 +62,4 @@ layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Rocket" to="." method="_on_rocket_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Emi" to="." method="_on_emi_pressed"]
-[connection signal="pressed" from="VBoxContainer/start_game" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/start_game" to="." method="_on_start_game_pressed"]

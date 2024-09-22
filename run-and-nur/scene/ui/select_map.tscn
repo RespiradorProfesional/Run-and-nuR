@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://kiwm2nmshgjy"]
+
+[ext_resource type="Script" path="res://script/ui/select_map.gd" id="1_mnb1w"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mnb1w")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 204.0
+offset_bottom = -234.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="city_map" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer/city_map" to="." method="_on_city_map_pressed"]

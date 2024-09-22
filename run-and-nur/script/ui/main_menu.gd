@@ -89,7 +89,6 @@ func _on_peer_connected(id: int = 1) -> void:
 func _on_peer_disconnected(id: int = 1) -> void:
 	pass
 
-
 #RPCS
 
 @rpc("any_peer", "call_local")

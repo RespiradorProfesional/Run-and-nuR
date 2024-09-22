@@ -4,6 +4,9 @@ extends Control
 @onready var player_2_texture=$VBoxContainer/HBoxContainer/player_2_texture
 var player_1_character
 var player_2_character
+var player_1_select
+var player_2_select
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,12 +17,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_button_pressed() -> void:
-	rpc("rpc_button") 
+func _on_start_game_pressed() -> void:
+	rpc("select_map")
 
 @rpc("any_peer","call_local")
-func rpc_button() :
-	print(name)
+func select_map() :
+	get_tree().change_scene_to_file("res://scene/ui/select_map.tscn")
 
 
 func _on_rocket_pressed() -> void:
@@ -28,17 +31,25 @@ func _on_rocket_pressed() -> void:
 func _on_emi_pressed() -> void:
 	rpc("select_character", "EMI", GlobalData.user_id)
 
+#se llama en todos los pcs pero al poner la variable de player_id no se aplica al usuario contrario
 @rpc("any_peer","call_local")
 func select_character(character_name,player_id):
 	print(player_id)
+	var new_texture
+	var character_route
 	match character_name:
 		"ROCKET":
-			if player_id!=null:
-				player_1_texture.texture=load("res://assets/ui/character_selector_photos/Rocket.png")
-			else:
-				player_2_texture.texture=load("res://assets/ui/character_selector_photos/Rocket.png")
+			new_texture=load("res://assets/ui/character_selector_photos/Rocket.png")
+			character_route=""
 		"EMI":
-			if player_id!=null:
-				player_1_texture.texture=load("res://icon.svg")
-			else:
-				player_2_texture.texture=load("res://icon.svg")
+			new_texture=load("res://icon.svg")
+			character_route=""
+	
+	if player_id!=null:
+		player_1_texture.texture=new_texture
+		GlobalData.character_route=character_route
+		player_1_select=true
+	else:
+		player_2_texture.texture=new_texture
+		GlobalData.character_route=character_route
+		player_2_select=true
