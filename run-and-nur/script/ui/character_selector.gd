@@ -28,16 +28,17 @@ func _on_rocket_pressed() -> void:
 func _on_emi_pressed() -> void:
 	rpc("select_character", "EMI", GlobalData.user_id)
 
-@rpc("authority","call_local")
+@rpc("any_peer","call_local")
 func select_character(character_name,player_id):
+	print(player_id)
 	match character_name:
 		"ROCKET":
-			if player_id==1:
+			if player_id!=null:
 				player_1_texture.texture=load("res://assets/ui/character_selector_photos/Rocket.png")
 			else:
 				player_2_texture.texture=load("res://assets/ui/character_selector_photos/Rocket.png")
 		"EMI":
-			if player_id==1:
+			if player_id!=null:
 				player_1_texture.texture=load("res://icon.svg")
 			else:
 				player_2_texture.texture=load("res://icon.svg")

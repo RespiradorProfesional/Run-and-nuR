@@ -31,6 +31,7 @@ func _on_host_lobby_pressed() -> void:
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
+	GlobalData.user_id=1
 	_on_peer_connected()
 
 func _on_search_lobby_pressed() -> void:
@@ -75,6 +76,7 @@ func join_lobby(id):
 	multiplayer.multiplayer_peer = peer
 	lobby_id=id 
 
+#esto solo se le ejecuta al host y no lo comparte con el otro usuario
 func _on_peer_connected(id: int = 1) -> void:
 	var player_scene = load("res://scene/ui/vbox_lobby.tscn")
 	var player_instantiate = player_scene.instantiate()
@@ -92,5 +94,4 @@ func _on_peer_disconnected(id: int = 1) -> void:
 
 @rpc("any_peer", "call_local")
 func change_scene() -> void:
-	GlobalData.user_id=player_id
 	get_tree().change_scene_to_file("res://scene/ui/character_selector.tscn")
