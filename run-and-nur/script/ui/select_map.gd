@@ -3,7 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	print(GlobalData.user_id)
 
 
 
@@ -19,4 +19,4 @@ func select_map(map_name):
 	match map_name:
 		"CITY":
 			scene_route=""
-	print("AAAAAAA")
+	get_tree().change_scene_to_file(scene_route)

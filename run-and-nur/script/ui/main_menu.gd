@@ -52,6 +52,7 @@ func _on_lobby_created(connect,id):
 		lobby_id=id
 		Steam.setLobbyData(id,"name",str(Steam.getPersonaName()+"'s Lobby"))
 		Steam.setLobbyJoinable(id,true)
+		
 
 func _on_join_friend(lobby_id, steam_id) -> void:
 	join_lobby(lobby_id)
@@ -72,15 +73,14 @@ func _on_lobby_match_list(lobbies):
 func join_lobby(id):
 	screen_waiting.visible=true
 	peer.connect_lobby(id)
-	print(peer)
 	multiplayer.multiplayer_peer = peer
+	GlobalData.user_id=multiplayer.get_unique_id()
 	lobby_id=id 
 
 #esto solo se le ejecuta al host y no lo comparte con el otro usuario
 func _on_peer_connected(id: int = 1) -> void:
 	var player_scene = load("res://scene/ui/vbox_lobby.tscn")
 	var player_instantiate = player_scene.instantiate()
-	player_id = id
 	player_instantiate.name = str(id)
 	lobby_players.add_child(player_instantiate, true)
 	player_instantiate.label_name.text = "a"

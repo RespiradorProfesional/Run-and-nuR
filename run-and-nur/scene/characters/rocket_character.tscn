@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu70fd4hkntjh"]
+
+[ext_resource type="PackedScene" uid="uid://db8ufph4h4wqh" path="res://scene/characters/base_character.tscn" id="1_d1a3a"]
+[ext_resource type="Texture2D" uid="uid://c1556t1ljmoxs" path="res://assets/ui/character_selector_photos/Rocket.png" id="2_e4pji"]
+
+[node name="CharacterBody2D" instance=ExtResource("1_d1a3a")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_e4pji")

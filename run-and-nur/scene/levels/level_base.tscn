@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://owlbgwop6oke"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3saja"]
+size = Vector2(964, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nm8a"]
+size = Vector2(43, 315)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(518, 328)
+shape = SubResource("RectangleShape2D_3saja")
+
+[node name="player_spawn" type="Marker2D" parent="."]
+position = Vector2(171, 220)
+
+[node name="finish_level" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="finish_level"]
+position = Vector2(984, 186)
+shape = SubResource("RectangleShape2D_6nm8a")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
