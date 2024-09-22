@@ -41,10 +41,10 @@ func select_character(character_name,player_id):
 	match character_name:
 		"ROCKET":
 			new_texture=load("res://assets/ui/character_selector_photos/Rocket.png")
-			character_route=""
+			character_route="res://scene/characters/rocket_character.tscn"
 		"EMI":
 			new_texture=load("res://icon.svg")
-			character_route=""
+			character_route="res://scene/characters/base_character.tscn"
 	
 	if player_id==1:
 		player_1_texture.texture=new_texture

@@ -9,7 +9,7 @@ func _ready() -> void:
 
 
 func _on_city_map_pressed() -> void:
-	if GlobalData.user_id!=null:
+	if GlobalData.user_id==1:
 		rpc("select_map","CITY")
 
 
@@ -18,5 +18,5 @@ func select_map(map_name):
 	var scene_route
 	match map_name:
 		"CITY":
-			scene_route=""
+			scene_route="res://scene/levels/level_city.tscn"
 	get_tree().change_scene_to_file(scene_route)
