@@ -13,8 +13,18 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if multiplayer.is_server():
-		# Instanciar jugadores solo en el servidor
+	if not multiplayer.is_server():
+		return
+	multiplayer.peer_connected.connect(peer_connect)
+
+func peer_connect():
+	print("A")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+""""
 		var player_scene_1 = load(GlobalData.chacter_player1_route)
 		var player_instantiate_1 = player_scene_1.instantiate()
 		player_instantiate_1.name = str(GlobalData.user_id)
@@ -26,8 +36,4 @@ func _ready() -> void:
 		player_instantiate_2.name = str(GlobalData.user_id_2)
 		player_instantiate_2.position = player_spawn.position
 		add_child(player_instantiate_2, true)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+"""
