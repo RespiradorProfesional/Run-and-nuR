@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var player_spawn=$player_spawn
-@onready var player_container=$player_container
 
 #EL PROBLEMA ESTA EN EL MULTIPLAYER SPAWN 
 #EL ORDEN AFECTA, YA QUE SI LO DEJO ASI PRIMERO EL HOST EL HOST NO VE AL USUARIO
@@ -13,19 +12,27 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var player_scene_1= load(GlobalData.chacter_player1_route)
-	var player_instantiate_1= player_scene_1.instantiate()
-	player_instantiate_1.name=str(GlobalData.user_id)
-	player_instantiate_1.position=player_spawn.position
-	player_container.add_child(player_instantiate_1,true)
-
-	var player_scene_2= load(GlobalData.chacter_player2_route)
-	var player_instantiate_2= player_scene_2.instantiate()
-	player_instantiate_2.name=str(GlobalData.user_id)
-	player_instantiate_2.position=player_spawn.position
-	player_container.add_child(player_instantiate_2,true)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_button_pressed() -> void:
+	if GlobalData.user_id==1:
+		var player_scene_1= load(GlobalData.chacter_player1_route)
+		var player_instantiate_1= player_scene_1.instantiate()
+		player_instantiate_1.name=str(GlobalData.user_id)
+		player_instantiate_1.position=player_spawn.position
+		add_child(player_instantiate_1,true)
+
+
+func _on_button_2_pressed() -> void:
+	if GlobalData.user_id!=1:
+		var player_scene_2= load(GlobalData.chacter_player2_route)
+		var player_instantiate_2= player_scene_2.instantiate()
+		player_instantiate_2.name=str(GlobalData.user_id)
+		player_instantiate_2.position=player_spawn.position
+		add_child(player_instantiate_2,true)
