@@ -4,5 +4,5 @@
 
 [node name="level_city" instance=ExtResource("1_6532x")]
 
-[node name="player_spawn" parent="." index="1"]
+[node name="player_spawn" parent="." index="2"]
 position = Vector2(382, 209)
