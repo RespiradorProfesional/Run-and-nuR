@@ -27,5 +27,5 @@ position = Vector2(984, 186)
 shape = SubResource("RectangleShape2D_6nm8a")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scene/characters/base_character.tscn")
+_spawnable_scenes = PackedStringArray("res://scene/characters/base_character.tscn", "res://scene/characters/rocket_character.tscn")
 spawn_path = NodePath("..")

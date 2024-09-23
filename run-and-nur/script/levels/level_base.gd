@@ -12,7 +12,11 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var player_scene= load("res://scene/characters/base_character.tscn")
+	var player_scene
+	if multiplayer.get_unique_id()==1:
+		player_scene= load(GlobalData.chacter_player1_route)
+	else :
+		player_scene= load(GlobalData.chacter_player2_route)
 	var player_instantiate= player_scene.instantiate()
 	player_instantiate.name=str(multiplayer.get_unique_id())
 	player_instantiate.position=player_spawn.position
