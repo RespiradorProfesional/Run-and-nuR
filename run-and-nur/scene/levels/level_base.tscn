@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://script/levels/level_base.gd" id="1_h24jb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3saja"]
-size = Vector2(964, 30)
+size = Vector2(1705, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6nm8a"]
 size = Vector2(43, 315)
@@ -14,7 +14,7 @@ script = ExtResource("1_h24jb")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(518, 328)
+position = Vector2(147.5, 328)
 shape = SubResource("RectangleShape2D_3saja")
 
 [node name="player_spawn" type="Marker2D" parent="."]

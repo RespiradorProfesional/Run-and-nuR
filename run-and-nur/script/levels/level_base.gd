@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var player_spawn=$player_spawn
-@onready var player_container=$player_container
 
 #EL PROBLEMA ESTA EN EL MULTIPLAYER SPAWN 
 #EL ORDEN AFECTA, YA QUE SI LO DEJO ASI PRIMERO EL HOST EL HOST NO VE AL USUARIO
@@ -22,7 +21,7 @@ func _ready() -> void:
 
 		var player_scene_2= load(GlobalData.chacter_player2_route)
 		var player_instantiate_2= player_scene_2.instantiate()
-		player_instantiate_2.name=str(GlobalData.user_id)
+		player_instantiate_2.name=str(GlobalData.user_id_2)
 		player_instantiate_2.position=player_spawn.position
 		add_child(player_instantiate_2,true)
 

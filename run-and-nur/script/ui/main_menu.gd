@@ -85,6 +85,8 @@ func _on_peer_connected(id: int = 1) -> void:
 	lobby_players.add_child(player_instantiate, true)
 	player_instantiate.label_name.text = "a"
 	lobby_vbox.visible = true
+	if id!=1:
+		GlobalData.user_id_2=id
 
 func _on_peer_disconnected(id: int = 1) -> void:
 	pass
