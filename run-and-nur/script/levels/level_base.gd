@@ -12,6 +12,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(get_tree().get_multiplayer())
 	var player_scene
 	if multiplayer.get_unique_id()==1:
 		player_scene= load(GlobalData.chacter_player1_route)

@@ -18,6 +18,7 @@ func _on_host_pressed() -> void:
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	hud.visible=false
 	_on_peer_connected()
+	
 
 func _on_join_pressed(lobby_id, steam_id) -> void:
 	peer.connect_lobby(lobby_id)
