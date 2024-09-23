@@ -11,6 +11,10 @@ size = Vector2(43, 315)
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_h24jb")
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scene/characters/base_character.tscn", "res://scene/characters/rocket_character.tscn")
+spawn_path = NodePath("..")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -25,7 +29,3 @@ position = Vector2(171, 220)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="finish_level"]
 position = Vector2(984, 186)
 shape = SubResource("RectangleShape2D_6nm8a")
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scene/characters/base_character.tscn", "res://scene/characters/rocket_character.tscn")
-spawn_path = NodePath("..")
