@@ -9,9 +9,9 @@ const JUMP_VELOCITY = -400.0
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 	if multiplayer.get_unique_id()==name.to_int():
-		camera.make_current()
+		$Camera2D.make_current()
 	else:
-		camera.enabled=false
+		$Camera2D.enabled=false
 
 
 func _physics_process(delta: float) -> void:
