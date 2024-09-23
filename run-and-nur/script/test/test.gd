@@ -32,6 +32,7 @@ func _on_peer_connected(id: int =1) -> void:
 	player_instantiate.name=str(id)
 	print(player_id)
 	add_child(player_instantiate,true)
+	print(get_tree().get_multiplayer())
 
 func _on_peer_disconnected(id: int =1) -> void:
 	pass
