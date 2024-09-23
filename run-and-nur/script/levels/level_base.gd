@@ -25,7 +25,6 @@ func _ready() -> void:
 		player_instantiate_2.name=str(GlobalData.user_id_2)
 		player_instantiate_2.position=player_spawn.position
 		add_child(player_instantiate_2,true)
-	rpc("update_camera",multiplayer.get_unique_id())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
