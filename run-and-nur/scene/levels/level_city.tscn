@@ -4,5 +4,9 @@
 
 [node name="level_city" instance=ExtResource("1_6532x")]
 
-[node name="player_spawn" parent="." index="2"]
+[node name="player_spawn" parent="." index="1"]
 position = Vector2(382, 209)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." index="3"]
+_spawnable_scenes = PackedStringArray("res://scene/characters/base_character.tscn", "res://scene/characters/rocket_character.tscn")
+spawn_path = NodePath("..")
