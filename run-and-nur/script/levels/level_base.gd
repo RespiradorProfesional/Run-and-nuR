@@ -9,6 +9,7 @@ extends Node2D
 
 #PROBAR SI QUITAR EL MARKER
 
+#NO ME IBA YA QUE INTENTABA INSTANCIAR EL PLAYER EN EL CLIENTE CUANDO SOLO SE INSTANCIA EN EL SERVIDOR
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,6 +25,7 @@ func _ready() -> void:
 		player_instantiate_2.name=str(GlobalData.user_id_2)
 		player_instantiate_2.position=player_spawn.position
 		add_child(player_instantiate_2,true)
+	rpc("update_camera",multiplayer.get_unique_id())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

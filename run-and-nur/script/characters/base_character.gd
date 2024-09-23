@@ -1,11 +1,14 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var camera=$Camera2D
+
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
+	rpc("update_camera")
 
 func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
@@ -26,3 +29,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+@rpc("authority","call_local")
+func update_camera():
+	camera.make_current()
