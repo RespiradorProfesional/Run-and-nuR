@@ -13,7 +13,7 @@ func _on_city_map_pressed() -> void:
 		rpc("select_map","CITY")
 
 
-@rpc("any_peer","call_local")
+@rpc("authority","call_local")
 func select_map(map_name):
 	var scene_route
 	match map_name:

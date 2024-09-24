@@ -2,20 +2,28 @@ extends Node2D
 
 @onready var player_spawn=$player_spawn
 
-#EL PROBLEMA ESTA EN EL MULTIPLAYER SPAWN 
-#EL ORDEN AFECTA, YA QUE SI LO DEJO ASI PRIMERO EL HOST EL HOST NO VE AL USUARIO
-#PERO EL USUARIO A EL SI, PERO SI PRIMERO SE SPAWNEA EL USUARIO Y DESPUES EL PLAYER NO SE VEN
-#AUNQUE EL TEST SI FUNCIONA BIEN MIRAR A VER   
+#TUVE VARIOS PROBLEMAS, UNO FUE DE QUE EL QUE SPAWNEA COSAS ES EL SERVER
+#COMO EN EL EJEMPLO DE PEER_CONECTED O AQUI QUE SE SPAWNEA EL PLAYER PARA PODER CONTROLARLO EL OTRO
+#PERO EL OTRO NUNCA LO SPAWNEA REALMENTE POR CODIGO SINO QUE SE ENCARGA EL MULTIPLAYER
 
-#PROBAR SI QUITAR EL MARKER
-
-#NO ME IBA YA QUE INTENTABA INSTANCIAR EL PLAYER EN EL CLIENTE CUANDO SOLO SE INSTANCIA EN EL SERVIDOR
+#Y OTRO PROBLEMA ES QUE EL MULTIPLAYERSPAWNER NECESITABA UN TIEMPO PARA PODER REALIZAR SPAWNS DE PLAYERS
+#YA QUE AL PARECER SI LO HACIA EN READY NO LE DABA TIEMPO A EJECUTARSE
 
 var character_1
 var character_2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	pass
+	
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_timer_timeout() -> void:
 	if multiplayer.get_unique_id()==1:
 		# Instanciar jugadores solo en el servidor
 		var player_scene_1 = load(GlobalData.chacter_player1_route)
@@ -31,9 +39,3 @@ func _ready() -> void:
 		player_instantiate_2.position = player_spawn.position
 		character_2=player_instantiate_2
 		add_child(character_2, true)
-	
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
