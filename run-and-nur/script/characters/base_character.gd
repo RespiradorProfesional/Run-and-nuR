@@ -6,18 +6,12 @@ class_name Player
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
-"""
 func _enter_tree() -> void:
-	
+	set_multiplayer_authority(name.to_int())
 	if multiplayer.get_unique_id()==name.to_int():
 		$Camera2D.call_deferred("make_current")
 	else:
 		$Camera2D.enabled=false
-	
-"""
-
-func _enter_tree() -> void:
-	set_multiplayer_authority(name.to_int())
 
 func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
@@ -38,11 +32,3 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
-
-
-func _on_timer_timeout() -> void:
-	rpc("enable_camera")
-
-@rpc("authority","call_local")
-func enable_camera():
-	camera.make_current()

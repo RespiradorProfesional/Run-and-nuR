@@ -16,7 +16,7 @@ var character_2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if multiplayer.is_server():
+	if multiplayer.get_unique_id()==1:
 		# Instanciar jugadores solo en el servidor
 		var player_scene_1 = load(GlobalData.chacter_player1_route)
 		var player_instantiate_1 = player_scene_1.instantiate()
